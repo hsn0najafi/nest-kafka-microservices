@@ -1,8 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import helmet from 'helmet';
+import * as compression from 'compression';
 
 import { AppModule } from './app.module';
+import { setupDocument } from './document';
 
 const configService: ConfigService = new ConfigService();
 
@@ -11,6 +14,10 @@ const configService: ConfigService = new ConfigService();
   app.setGlobalPrefix(configService.get<string>('APIsPath'));
   app.use(compression());
   app.use(helmet());
+
+  const isDevMode = configService.get<string>('NODE_ENV') == 'dev';
+  const swaggerPath = configService.get<string>('DocsPath');
+  isDevMode && setupDocument(app, swaggerPath);
 
   const port = configService.get<number>('PORT') || 3000;
   await app.listen(port);
