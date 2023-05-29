@@ -63,7 +63,7 @@ services:
   core:
     build:
       context: ./core
-      dockerfile: ./core/Dockerfile
+      dockerfile: Dockerfile
       tags:
         - "hsn0najafi/nest-kafka-microservices-core:latest"
     restart: always
@@ -77,7 +77,7 @@ services:
   auth:
     build:
       context: ./auth
-      dockerfile: ./auth/Dockerfile
+      dockerfile: Dockerfile
       tags:
         - "hsn0najafi/nest-kafka-microservices-auth:latest"
     restart: always
