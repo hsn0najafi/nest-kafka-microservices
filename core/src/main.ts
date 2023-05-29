@@ -8,6 +8,9 @@ const configService: ConfigService = new ConfigService();
 
 (async () => {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  app.setGlobalPrefix(configService.get<string>('APIsPath'));
+  app.use(compression());
+  app.use(helmet());
 
   const port = configService.get<number>('PORT') || 3000;
   await app.listen(port);
