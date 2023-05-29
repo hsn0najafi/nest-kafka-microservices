@@ -37,9 +37,14 @@ export class AuthModule implements OnModuleInit {
   constructor(
     @Inject('AUTH_MICROSERVICE')
     private readonly client: ClientKafka,
+    private readonly configService: ConfigService,
   ) {}
 
   async onModuleInit() {
+    const topics = this.configService.get('KAFKA_TOPICS').split(',');
+    for (const topic of topics) {
+      this.client.subscribeToResponseOf(topic);
+    }
     await this.client.connect();
   }
 }
