@@ -13,9 +13,9 @@ import {
 import { ClientKafka, RpcException } from '@nestjs/microservices';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { catchError, Observable, throwError, timeout } from 'rxjs';
+
 import { UserId } from 'src/shared/decorators';
 import { AuthGuard } from 'src/shared/guards';
-
 import { LoginDto, RegisterDto } from './dto';
 
 @Controller({ path: 'auth', version: '1' })
