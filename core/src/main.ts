@@ -8,6 +8,7 @@ import * as compression from 'compression';
 import { AppModule } from './app.module';
 import { setupDocument } from './document';
 import { LoggingInterceptor } from './shared/interceptors';
+import { RpcExceptionFilter } from './shared/filters';
 
 const configService: ConfigService = new ConfigService();
 
@@ -17,6 +18,7 @@ const configService: ConfigService = new ConfigService();
   app.enableVersioning({ type: VersioningType.URI });
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.useGlobalInterceptors(new LoggingInterceptor());
+  app.useGlobalFilters(new RpcExceptionFilter());
   app.use(compression());
   app.use(helmet());
 
