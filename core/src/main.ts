@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { VersioningType } from '@nestjs/common';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import helmet from 'helmet';
@@ -14,6 +14,7 @@ const configService: ConfigService = new ConfigService();
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.setGlobalPrefix(configService.get<string>('APIsPath'));
   app.enableVersioning({ type: VersioningType.URI });
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   app.use(compression());
   app.use(helmet());
 
