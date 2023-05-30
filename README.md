@@ -5,6 +5,22 @@
 Pull images from docker registery and run
 
 ```
+git clone https://github.com/hsn0najafi/nest-kafka-microservices
+```
+
+```
+cd nest-kafka-microservices
+```
+
+```
+cp -r auth/.env.sample auth/.env
+```
+
+```
+cp -r core/.env.sample core/.env
+```
+
+```
 docker compose up --scale auth=4
 ```
 
