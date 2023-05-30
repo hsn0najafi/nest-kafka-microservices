@@ -61,7 +61,11 @@ services:
       - net
 
   core:
-    image: hsn0najafi/nest-kafka-microservices-core
+    build:
+      context: ./core
+      dockerfile: Dockerfile
+      tags:
+        - "hsn0najafi/nest-kafka-microservices-core:latest"
     restart: always
     ports:
       - "3000:3000"
@@ -71,7 +75,11 @@ services:
       - net
 
   auth:
-    image: hsn0najafi/nest-kafka-microservices-auth
+    build:
+      context: ./auth
+      dockerfile: Dockerfile
+      tags:
+        - "hsn0najafi/nest-kafka-microservices-auth:latest"
     deploy:
       replicas: 2
     restart: always
