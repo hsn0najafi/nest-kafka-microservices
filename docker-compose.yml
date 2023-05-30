@@ -80,6 +80,8 @@ services:
       dockerfile: Dockerfile
       tags:
         - "hsn0najafi/nest-kafka-microservices-auth:latest"
+    deploy:
+      replicas: 2
     restart: always
     depends_on:
       - kafka
