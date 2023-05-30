@@ -83,10 +83,10 @@ export class AuthService {
     }
   }
 
-  async me(userId: string) {
+  async me(userId: number) {
     try {
       const user = await this.usersRepository.findOneBy({
-        id: +userId,
+        id: userId,
       });
 
       if (!user) {

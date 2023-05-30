@@ -27,7 +27,7 @@ export class AuthController {
   }
 
   @MessagePattern('me')
-  async me(@Payload('body') payload: string) {
+  async me(@Payload('body') payload: number) {
     console.log('-------------- Auth / Me -------------');
     return await this.authService.me(payload);
   }
